@@ -24,7 +24,7 @@ jobs:
 
       - name: Run Python script
         run: |
-          python your_script.py
+          python main.py
         env:
           API_URL: ${{ secrets.API_URL }}
           DISCORD_WEBHOOK_ALERT: ${{ secrets.DISCORD_WEBHOOK_ALERT }}
