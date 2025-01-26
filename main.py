@@ -1,14 +1,14 @@
 import requests
 import time
+import os
 
-# API and Webhook URLs
-API_URL = "https://spacefarmers.io/api/farmers/5f4c3f61bee614aeea52db9108646e9e500e13b42d86b8566eaa414e65a263ad"
-DISCORD_WEBHOOK_ALERT = "https://discord.com/api/webhooks/1332880011727868024/NbTXtXlC9ncuXplhuaPBbPPy-7NRElIftXNQ40-2lY3YceZvm02UngsIw2DRHmYpvfZG"  # Webhook 1
-DISCORD_WEBHOOK_STATS = "https://discord.com/api/webhooks/1332879227854520370/ramgXI2jFl4Ie1cE70E2ifJSOjhLsrZx1tZi1JD5YpwwdZUaFB846GpewlHDkaxHtpnC"  # Webhook 2
+# API and Webhook URLs from environment variables
+API_URL = os.getenv("API_URL")
+DISCORD_WEBHOOK_ALERT = os.getenv("DISCORD_WEBHOOK_ALERT")
+DISCORD_WEBHOOK_STATS = os.getenv("DISCORD_WEBHOOK_STATS")
 
 # Interval between checks (in seconds)
 CHECK_INTERVAL = 300  # 5 minutes
-
 
 def fetch_farmer_data():
     try:
@@ -19,7 +19,6 @@ def fetch_farmer_data():
         print(f"Error fetching farmer data: {e}")
         return None
 
-
 def send_discord_notification(webhook_url, message):
     payload = {"content": message}
     try:
@@ -28,7 +27,6 @@ def send_discord_notification(webhook_url, message):
         print("Notification sent successfully.")
     except Exception as e:
         print(f"Error sending notification to {webhook_url}: {e}")
-
 
 def main():
     while True:
@@ -64,9 +62,5 @@ def main():
 
         time.sleep(CHECK_INTERVAL)
 
-
 if __name__ == "__main__":
     main()
-
-
-I want to reply this script to heroku
