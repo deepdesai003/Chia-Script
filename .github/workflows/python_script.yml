@@ -7,25 +7,26 @@ on:
 
 jobs:
   run-script:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2  # Checkout the repository's code
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v2  # Correct version to set up Python
         with:
-          python-version: '3.x'
+          python-version: '3.x'  # Choose the Python version (e.g., 3.8 or 3.9)
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          python -m pip install --upgrade pip  # Upgrade pip
+          pip install -r requirements.txt  # Install the dependencies from requirements.txt
 
       - name: Run Python script
         run: |
-          python main.py
+          python main.py  # Running the correct Python script (main.py)
         env:
-          API_URL: ${{ secrets.API_URL }}
-          DISCORD_WEBHOOK_ALERT: ${{ secrets.DISCORD_WEBHOOK_ALERT }}
-          DISCORD_WEBHOOK_STATS: ${{ secrets.DISCORD_WEBHOOK_STATS }}
+          API_URL: ${{ secrets.API_URL }}  # Use the secret stored in GitHub for API URL
+          DISCORD_WEBHOOK_ALERT: ${{ secrets.DISCORD_WEBHOOK_ALERT }}  # Webhook 1 URL
+          DISCORD_WEBHOOK_STATS: ${{ secrets.DISCORD_WEBHOOK_STATS }}  # Webhook 2 URL
