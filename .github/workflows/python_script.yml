@@ -1,4 +1,5 @@
 name: Run Python Script
+run: python main.py --once
 
 on:
   schedule:
