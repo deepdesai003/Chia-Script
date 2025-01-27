@@ -1,5 +1,4 @@
 name: Run Python Script
-run: python main.py --once
 
 on:
   schedule:
@@ -25,8 +24,7 @@ jobs:
           pip install -r requirements.txt  # Install the dependencies from requirements.txt
 
       - name: Run Python script
-        run: |
-          python main.py  # Running the correct Python script (main.py)
+        run: python main.py --once  # Running the correct Python script with --once flag
         env:
           API_URL: ${{ secrets.API_URL }}  # Use the secret stored in GitHub for API URL
           DISCORD_WEBHOOK_ALERT: ${{ secrets.DISCORD_WEBHOOK_ALERT }}  # Webhook 1 URL
