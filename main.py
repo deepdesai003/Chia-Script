@@ -1,6 +1,7 @@
 import requests
 import time
 import os
+import sys
 
 # API and Webhook URLs from environment variables
 API_URL = os.getenv("API_URL")
@@ -30,6 +31,8 @@ def send_discord_notification(webhook_url, message):
 
 def main():
     while True:
+        run_once = "--once" in sys.argv
+
         data = fetch_farmer_data()
         if data:
             # Extract farmer attributes
@@ -60,6 +63,8 @@ def main():
                                  "Action may be required! 🚨")
                 send_discord_notification(DISCORD_WEBHOOK_ALERT, alert_message)
 
+        if run_once:
+            break
         time.sleep(CHECK_INTERVAL)
 
 if __name__ == "__main__":
